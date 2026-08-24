@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2356,
+    "production_files": 27,
+    "production_packages": 8,
+    "test_files": 9,
+    "production_functions": 188,
+    "decision_points": 347
+  },
+  "persistence": {
+    "module": "go.etcd.io/bbolt",
+    "entities": [
+      "Volunteer",
+      "Activity",
+      "ServiceRecord",
+      "ServiceStatus"
+    ],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {
+      "steps": [
+        "register volunteer profile",
+        "create and open activity",
+        "append service hours",
+        "persist the service record"
+      ],
+      "test": "TestWorkflowOne"
+    },
+    {
+      "steps": [
+        "find pending records",
+        "review a service record",
+        "approve or reject the record",
+        "calculate approved totals"
+      ],
+      "test": "TestWorkflowTwo"
+    },
+    {
+      "steps": [
+        "run command line intake",
+        "query sorted records",
+        "render a summary",
+        "restore data after reopening"
+      ],
+      "test": "TestWorkflowThree"
+    }
+  ]
+}
